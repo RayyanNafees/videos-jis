@@ -2,7 +2,7 @@
 # A very simple Flask Hello World app for you to get started with...
 
 from flask import Flask, jsonify, render_template, request
-from mysql.connector import connect
+from psycopg2 import connect
 from flask_cors import CORS
 
 app = Flask(__name__)
