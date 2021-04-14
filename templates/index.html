@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>YouTube Videos | Jain Info Soft</title>
+        <meta charset="utf-8" />
+        <meta name="theme" content="deepskyblue" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        {% for link in links %}
+            <p>{{link}}</p>
+        {% endfor %}
+
+        <button>Add link</button>
+    </body>
+    <script>
+        let short = lnk => lnk.replace('https://www.youtube.com/watch?v=', '')
+        $('button').click(function(){
+            this.disabled = true;
+            let link = prompt('Video link:');
+            if (link)
+                $.post('/add', {link: short(link)}, data=> {
+                    alert(data);
+                    this.disabled=false;
+                    $('body').prepend(`<p>${short(link)}</p>`)
+                });
+            else
+                this.disabled=false;
+        })
+    </script>
+</html>
